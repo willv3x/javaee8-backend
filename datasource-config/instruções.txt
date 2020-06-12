@@ -1,0 +1,42 @@
+No diretório do Wildfly, entrar em standalone > configuration
+
+Editar o arquivo "standalone.xml"
+
+Encontrar a tag <datasources>
+
+Dentro desta tag, adicionar as configurações abaixo:
+
+    <datasource jndi-name="java:jboss/datasources/bancoCRUDDS" pool-name="bancoCRUDDS" enabled="true" use-java-context="true">
+        <connection-url>jdbc:postgresql://localhost:5432/bancoCRUD</connection-url>
+        <driver>postgresql</driver>
+        <security>
+            <user-name>postgres</user-name>
+            <password>admin</password>
+        </security>
+    </datasource>
+    <drivers>
+        <driver name="postgresql" module="org.postgresql">
+            <driver-class>org.postgresql.Driver</driver-class>
+            <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+        </driver>
+    </drivers>
+
+Para instalar o .jar do postgresql como driver do Wildfly, acessar modules
+
+Criar o caminho org/postgresql/main com pastas
+
+Dentro da pasta main, colar o .jar, e criar um arquivo .xml chamado "module.xml"
+
+Dentro deste arquivo, colocar as configurações abaixo:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <module xmlns="urn:jboss:module:1.3" name="org.postgresql">
+        <resources>
+            <resource-root path="postgresql-42.2.14.jar"/>
+            <!-- Make sure this matches the name of the JAR you are installing -->
+        </resources>
+        <dependencies>
+            <module name="javax.api"/>
+            <module name="javax.transaction.api"/>
+        </dependencies>
+    </module>
