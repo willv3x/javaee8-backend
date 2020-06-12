@@ -1,2 +1,2 @@
 # javaee-backend
-Template Back-end Java EE.
+Template Back-end Java EE 8.
