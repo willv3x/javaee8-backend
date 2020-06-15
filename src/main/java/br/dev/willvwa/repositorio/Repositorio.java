@@ -13,5 +13,5 @@ public abstract class Repositorio<T extends Entidade> implements Serializable {
 
     abstract List<T> obterTodos();
 
-    abstract void excluirEntidade(T t);
+    abstract void excluirEntidade(Long id);
 }

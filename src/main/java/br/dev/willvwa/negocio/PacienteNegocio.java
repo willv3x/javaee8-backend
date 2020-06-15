@@ -13,19 +13,14 @@ public class PacienteNegocio extends Negocio<Paciente> {
     @Inject
     private PacienteRepositorio pacienteRepositorio;
 
-    public Paciente obter(Long id) {
-
-        return this.pacienteRepositorio.obterEntidade(id);
-    }
-
     public List<Paciente> obterTodos() {
 
         return this.pacienteRepositorio.obterTodos();
     }
 
-    public void excluir(Paciente paciente) {
+    public void excluir(Long pacienteId) {
 
-        this.pacienteRepositorio.excluirEntidade(paciente);
+        this.pacienteRepositorio.excluirEntidade(pacienteId);
     }
 
     public void salvar(Paciente paciente) {

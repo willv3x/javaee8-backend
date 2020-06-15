@@ -14,8 +14,8 @@ public class PacienteRepositorio extends Repositorio<Paciente> {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
     @Override
+    @Transactional
     public void salvarEntidade(Paciente paciente) {
 
         this.entityManager.persist(paciente);
@@ -36,8 +36,8 @@ public class PacienteRepositorio extends Repositorio<Paciente> {
 
     @Transactional
     @Override
-    public void excluirEntidade(Paciente paciente) {
+    public void excluirEntidade(Long pacienteId) {
 
-        this.entityManager.remove(entityManager.merge(paciente));
+        this.entityManager.remove(this.obterEntidade(pacienteId));
     }
 }

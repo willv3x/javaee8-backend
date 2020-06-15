@@ -19,10 +19,11 @@ public abstract class Entidade implements Serializable {
     private LocalDateTime dataAtualizacao;
 
     @PrePersist
-
     public void antesPersistir() {
 
         this.dataRegistro = LocalDateTime.now();
+
+        this.dataAtualizacao = LocalDateTime.now();
     }
 
     @PreUpdate
@@ -33,10 +34,6 @@ public abstract class Entidade implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalDateTime getDataRegistro() {

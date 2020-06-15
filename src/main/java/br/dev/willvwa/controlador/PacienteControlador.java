@@ -15,23 +15,6 @@ public class PacienteControlador extends Controlador<Paciente> {
     private PacienteNegocio pacienteNegocio;
 
     @GET
-    @Path("/obter/{pacienteId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Paciente obter(@PathParam("pacienteId") Long id) {
-
-        try {
-
-            return this.pacienteNegocio.obter(id);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-            return null;
-        }
-    }
-
-    @GET
     @Path("/obter")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Paciente> obterTodos() {
@@ -48,15 +31,14 @@ public class PacienteControlador extends Controlador<Paciente> {
         }
     }
 
-    @POST
-    @Path("/excluir")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @GET
+    @Path("/excluir/{pacienteId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void excluir(Paciente paciente) {
+    public void excluir(@PathParam("pacienteId") Long pacienteId) {
 
         try {
 
-            this.pacienteNegocio.excluir(paciente);
+            this.pacienteNegocio.excluir(pacienteId);
 
         } catch (Exception e) {
 
